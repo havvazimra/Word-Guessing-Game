@@ -1,4 +1,4 @@
-Word Guessing Game
+**Word Guessing Game**
 
 📌 Overview
 
@@ -81,6 +81,10 @@ Navigate to http://127.0.0.1:5000/
 
 
 This project is licensed under the MIT License.
+📜 License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.  
+**If you use or modify this project, please consider giving credit.** 🚀
+
 
 💡 Feel free to contribute by reporting bugs, suggesting features, or submitting pull requests! 🤝
 
