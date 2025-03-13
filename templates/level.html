@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Level</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        text-align: center;
+        font-family: 'Nunito', sans-serif;
+        background-image: url("static/images/background(page 1) .jpg");
+        background-size: cover;        /* Ensures the image covers the screen without zooming */
+        background-position: center;   /* Centers the image to look balanced */
+        background-repeat: no-repeat;  /* Prevents tiling of the image */
+        color: #E0E0E0;  /* Light text for readability */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    h1 {
+        margin-bottom: 20px;
+        color: #76c7c0;  /* Accent color for the title */
+    }
+    .container {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #1E1E1E;  /* Dark container background */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    button {
+        margin: 5px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 2px solid #6A5ACD;  /* Accent border */
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #2C2C2C;  /* Dark button background */
+        color: #E0E0E0;  /* Light text for buttons */
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    button:hover {
+        background-color: #6A5ACD;  /* Hover effect */
+        border-color: #483D8B;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Choose Your Level 🌟</h1>
+    <form method="POST">
+        <button type="submit" name="level" value="easy">🍏 Easy</button>
+        <button type="submit" name="level" value="medium">🍊 Medium</button>
+        <button type="submit" name="level" value="hard">🌶️ Hard</button>
+    </form>
+</div>
+
+</body>
+</html>

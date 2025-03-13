@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Word Guessing Game </title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+    body { 
+        text-align: center; 
+        font-family: 'Nunito', sans-serif; 
+        background-image: url("static/images/background(page 2) .jpg");
+        background-size: cover;  
+        background-position: center;  
+        margin: 0; 
+        padding: 0; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh;
+        color: #E0E0E0;  
+    }
+    .container { 
+        max-width: 500px; 
+        padding: 20px; 
+        border-radius: 10px; 
+        background-color: #1E1E1E;  
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+    }
+    input, select, button { 
+        margin: 10px; 
+        padding: 7px; 
+        border: 2px solid #6A5ACD; 
+        border-radius: 5px; 
+        text-align: center; 
+        font-weight: 600;
+        color: #E0E0E0;  
+        background-color: #2C2C2C;  
+    }
+    button { 
+        background-color: #6A5ACD; 
+        color: #E0E0E0;  
+        cursor: pointer; 
+        transition: background-color 0.3s ease; 
+        font-weight: 600;
+    }
+    button:hover { 
+        background-color: #483D8B; 
+    }
+    .message { 
+        margin: 10px; 
+        font-weight: bold; 
+        color: #FF6347;  
+    }
+    .title { 
+        color: #76c7c0;  
+        margin-bottom: 20px; 
+        font-size: 28px;
+    }
+    .info, .hint, .timer { 
+        color: #B0B0B0;  
+        font-size: 18px;
+    }
+    a { 
+        color: #6A5ACD; 
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 class="title"> Word Guessing Game </h1>
+
+    {% if not guessed_word.strip() %}
+        <form method="POST">
+            <label for="level">Choose Level: </label>
+            <select name="level" id="level" required>
+                <option value="easy">🍏 Easy</option>
+                <option value="medium">🍍 Medium</option>
+                <option value="hard">🌶️ Hard</option>
+            </select>
+            <br>
+            <button type="submit" onclick="startTimer()">Start Game</button>
+        </form>
+    {% else %}
+        <p class="hint">💡 Hint: {{ hint }}</p>
+        <p class="timer">⏰ Time Left: <span id="timer">30</span> seconds</p>
+
+        <form method="POST">
+            <p class="info">📝 Current Word: <b style="color: #FF4500;">{{ guessed_word }}</b></p>
+            <p class="info">❤️ Attempts Left: <b style="color: #1E90FF;">{{ attempts }}</b></p>
+
+            <input type="text" name="letter" maxlength="1" placeholder="A-Z" required>
+            <button type="submit">🔍 Guess</button>
+        </form>
+
+        {% if message %}
+            <form method="POST">
+                <input type="hidden" name="action" value="play_again">
+                <button type="submit">🔄 Play Again</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+    <p class="message">{{ message }}</p>
+
+    <!-- Leaderboard Link -->
+    <a href="/leaderboard">🏆 View Leaderboard</a>
+</div>
+
+<!-- JavaScript for Continuous Timer -->
+<script>
+    let timeLeft = 30;
+    const timerElement = document.getElementById("timer");
+    let timerStarted = false;
+
+    function startTimer() {
+        if (!timerStarted) {  // Ensure timer starts only once
+            timerStarted = true;
+            const countdown = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    alert("⏰ Time's up!");
+                    document.querySelector('input[name="letter"]').disabled = true;
+                    document.querySelector('button[type="submit"]').disabled = true;
+                } else {
+                    timeLeft--;
+                    timerElement.textContent = timeLeft;
+                }
+            }, 1000);
+        }
+    }
+
+    // Automatically start the timer if we're on the game page
+    if (document.querySelector('.hint')) {
+        startTimer();
+    }
+</script>
+
+</body>
+</html>
